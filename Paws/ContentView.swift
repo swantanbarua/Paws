@@ -28,7 +28,13 @@ struct ContentView: View {
                         ForEach(pets) { pet in
                             NavigationLink(destination: EmptyView()) {
                                 VStack {
+                                   Spacer()
                                     
+                                    Text(pet.name)
+                                        .font(.title.weight(.light))
+                                        .padding(.vertical)
+                                    
+                                    Spacer()
                                 }
                             }
                         }
