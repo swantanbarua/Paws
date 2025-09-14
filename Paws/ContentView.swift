@@ -36,6 +36,19 @@ struct ContentView: View {
                                     
                                     Spacer()
                                 }
+                                .frame(
+                                    minWidth: 0,
+                                    maxWidth: .infinity,
+                                    minHeight: 0,
+                                    maxHeight: .infinity
+                                )
+                                .background(.ultraThinMaterial)
+                                .clipShape(
+                                    RoundedRectangle(
+                                        cornerRadius: 8,
+                                        style: .circular
+                                    )
+                                )
                             }
                         }
                     }
