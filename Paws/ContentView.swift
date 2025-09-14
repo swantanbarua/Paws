@@ -33,6 +33,11 @@ struct ContentView: View {
     }
 }
 
+#Preview("Sample Data") {
+    ContentView()
+        .modelContainer(Pet.preview)
+}
+
 #Preview("No Data") {
     ContentView()
         .modelContainer(
