@@ -21,7 +21,14 @@ struct EditPetView: View {
 #Preview {
     NavigationStack {
         do {
+            let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
+            let container = ModelContainer(
+                for: Pet.self,
+                configurations: configuration
+            )
+            
             return EditPetView()
+                .modelContainer(container)
         } catch {
             fatalError("Could not load preview data : \(error.localizedDescription)")
         }
