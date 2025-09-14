@@ -26,6 +26,10 @@ struct ContentView: View {
     }
 }
 
-#Preview {
+#Preview("No Data") {
     ContentView()
+        .modelContainer(
+            for: Pet.self,
+            inMemory: true
+        )
 }
