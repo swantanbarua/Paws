@@ -34,7 +34,11 @@ struct ContentView: View {
                                             Image(uiImage: image)
                                         }
                                     } else {
-                                        
+                                        Image(systemName: "pawprint.circle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .padding(40)
+                                            .foregroundStyle(.quaternary)
                                     }
                                     
                                    Spacer()
