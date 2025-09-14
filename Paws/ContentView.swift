@@ -24,7 +24,15 @@ struct ContentView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: layout) {
-                    
+                    GridRow {
+                        ForEach(pets) { pet in
+                            NavigationLink(destination: EmptyView()) {
+                                VStack {
+                                    
+                                }
+                            }
+                        }
+                    }
                 }
             }
             .overlay {
