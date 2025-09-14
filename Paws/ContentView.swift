@@ -14,11 +14,18 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Query private var pets: [Pet]
     
+    let layout = [
+        GridItem(.flexible(minimum: 120)),
+        GridItem(.flexible(minimum: 120))
+    ]
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
             ScrollView {
-                EmptyView()
+                LazyVGrid(columns: layout) {
+                    
+                }
             }
             .overlay {
                 if pets.isEmpty {
