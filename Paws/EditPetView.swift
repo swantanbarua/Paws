@@ -11,6 +11,7 @@ import SwiftData
 struct EditPetView: View {
     
     // MARK: - PROPERTIES
+    @Bindable var pet: Pet
     
     // MARK: - BODY
     var body: some View {
@@ -26,8 +27,9 @@ struct EditPetView: View {
                 for: Pet.self,
                 configurations: configuration
             )
+            let sampleData = Pet(name: "Euro")
             
-            return EditPetView()
+            return EditPetView(pet: sampleData)
                 .modelContainer(container)
         } catch {
             fatalError("Could not load preview data : \(error.localizedDescription)")
