@@ -20,6 +20,15 @@ struct ContentView: View {
             ScrollView {
                 EmptyView()
             }
+            .overlay {
+                if pets.isEmpty {
+                    CustomContentUnavailableView(
+                        icon: "dog.circle",
+                        title: "No Pets",
+                        description: "Add a new pet to get started"
+                    )
+                }
+            }
         }
     }
 }
