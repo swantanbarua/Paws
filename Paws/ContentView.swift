@@ -54,7 +54,11 @@ struct ContentView: View {
                         }
                     }
                 }
+                .padding(.horizontal)
             }
+            .navigationTitle(
+                pets.isEmpty ? "" : "Paws"
+            )
             .overlay {
                 if pets.isEmpty {
                     CustomContentUnavailableView(
