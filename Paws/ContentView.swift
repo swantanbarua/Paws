@@ -28,6 +28,15 @@ struct ContentView: View {
                         ForEach(pets) { pet in
                             NavigationLink(destination: EmptyView()) {
                                 VStack {
+                                    
+                                    if let petPhoto = pet.photo {
+                                        if let image = UIImage(data: petPhoto) {
+                                            Image(uiImage: image)
+                                        }
+                                    } else {
+                                        
+                                    }
+                                    
                                    Spacer()
                                     
                                     Text(pet.name)
