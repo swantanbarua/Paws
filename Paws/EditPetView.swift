@@ -7,15 +7,16 @@
 
 import SwiftUI
 import SwiftData
+import PhotosUI
 
 struct EditPetView: View {
     
     // MARK: - PROPERTIES
     @Bindable var pet: Pet
+    @State private var photosPickerItem: PhotosPickerItem?
     
     // MARK: - BODY
     var body: some View {
-        
         if let imageData = pet.photo {
             if let image = UIImage(data: imageData) {
                 Image(uiImage: image)
