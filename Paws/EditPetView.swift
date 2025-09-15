@@ -16,7 +16,13 @@ struct EditPetView: View {
     // MARK: - BODY
     var body: some View {
         Form {
-            
+          TextField(
+            "Name",
+            text: $pet.name
+          )
+          .textFieldStyle(.roundedBorder)
+          .font(.largeTitle.weight(.light))
+          .padding(.vertical)
         }
         .listStyle(.plain)
         .navigationTitle("Edit \(pet.name)")
@@ -28,7 +34,7 @@ struct EditPetView: View {
     NavigationStack {
         do {
             let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-            let container = ModelContainer(
+            let container = try ModelContainer(
                 for: Pet.self,
                 configurations: configuration
             )
