@@ -28,6 +28,12 @@ struct EditPetView: View {
                 
             } label: {
                 Text("SAVE")
+                    .font(.title3.weight(.medium))
+                    .padding(8)
+                    .frame(
+                        minWidth: 0,
+                        maxWidth: .infinity
+                    )
             }
             .buttonStyle(.borderedProminent)
             .listRowSeparator(.hidden)
