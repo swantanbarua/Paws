@@ -38,7 +38,12 @@ struct EditPetView: View {
                     "Select a photo",
                     systemImage: "photo.badge.plus"
                 )
+                .frame(
+                    minWidth: 0,
+                    maxWidth: .infinity
+                )
             }
+            .listRowSeparator(.hidden)
             
             TextField(
                 "Name",
