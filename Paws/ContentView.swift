@@ -78,9 +78,15 @@ struct ContentView: View {
                                     )
                                 )
                                 .overlay(alignment: .topTrailing) {
-                                    if !isEditing {
+                                    if isEditing {
                                         Menu {
-                                            
+                                            Button(
+                                                "Delete",
+                                                systemImage: "trash",
+                                                role: .destructive
+                                            ) {
+                                                
+                                            }
                                         } label: {
                                             Image(systemName: "trash.circle.fill")
                                                 .resizable()
