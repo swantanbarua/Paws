@@ -21,6 +21,7 @@ struct ContentView: View {
     ]
     
     func addPet() {
+        isEditing = false
         let pet = Pet(name: "Best Friend")
         modelContext.insert(pet)
         path = [pet]
@@ -85,7 +86,10 @@ struct ContentView: View {
                                                 systemImage: "trash",
                                                 role: .destructive
                                             ) {
-                                                
+                                                withAnimation {
+                                                    modelContext.delete(pet)
+                                                    try? modelContext.save()
+                                                }
                                             }
                                         } label: {
                                             Image(systemName: "trash.circle.fill")
