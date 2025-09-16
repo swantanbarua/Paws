@@ -14,6 +14,7 @@ struct ContentView: View {
     @Environment(\.modelContext) var modelContext
     @Query private var pets: [Pet]
     @State private var path = [Pet]()
+    @State private var isEditing = false
     let layout = [
         GridItem(.flexible(minimum: 120)),
         GridItem(.flexible(minimum: 120))
@@ -91,6 +92,14 @@ struct ContentView: View {
                 destination: EditPetView.self
             )
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        withAnimation {
+                            isEditing.toggle()
+                        }
+                    }
+                }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(
                         "Add a new Pet",
