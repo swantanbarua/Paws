@@ -13,7 +13,7 @@ struct ContentView: View {
     // MARK: - PROPERTIES
     @Environment(\.modelContext) var modelContext
     @Query private var pets: [Pet]
-    
+    @State private var path = [Pet]()
     let layout = [
         GridItem(.flexible(minimum: 120)),
         GridItem(.flexible(minimum: 120))
@@ -22,16 +22,17 @@ struct ContentView: View {
     func addPet() {
         let pet = Pet(name: "Best Friend")
         modelContext.insert(pet)
+        path = [pet]
     }
     
     // MARK: - BODY
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ScrollView {
                 LazyVGrid(columns: layout) {
                     GridRow {
                         ForEach(pets) { pet in
-                            NavigationLink(destination: EmptyView()) {
+                            NavigationLink(value: pet) {
                                 VStack {
                                     
                                     if let petPhoto = pet.photo {
@@ -77,7 +78,11 @@ struct ContentView: View {
             .navigationTitle(
                 pets.isEmpty ? "" : "Paws"
             )
-            .toolBar {
+            .navigationDestination(
+                for: Pet.self,
+                destination: EditPetView.self
+            )
+            .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(
                         "Add a new Pet",
