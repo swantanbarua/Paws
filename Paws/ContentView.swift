@@ -77,6 +77,24 @@ struct ContentView: View {
                                         style: .circular
                                     )
                                 )
+                                .overlay(alignment: .topTrailing) {
+                                    if !isEditing {
+                                        Menu {
+                                            
+                                        } label: {
+                                            Image(systemName: "trash.circle.fill")
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(
+                                                    width: 36,
+                                                    height: 36
+                                                )
+                                                .foregroundStyle(.red)
+                                                .symbolRenderingMode(.multicolor)
+                                                .padding()
+                                        }
+                                    }
+                                }
                             }
                             .foregroundStyle(.primary)
                         }
@@ -97,6 +115,8 @@ struct ContentView: View {
                         withAnimation {
                             isEditing.toggle()
                         }
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
                     }
                 }
                 
