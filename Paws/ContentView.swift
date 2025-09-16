@@ -77,6 +77,15 @@ struct ContentView: View {
             .navigationTitle(
                 pets.isEmpty ? "" : "Paws"
             )
+            .toolBar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(
+                        "Add a new Pet",
+                        systemImage: "plus.circle",
+                        action: addPet()
+                    )
+                }
+            }
             .overlay {
                 if pets.isEmpty {
                     CustomContentUnavailableView(
