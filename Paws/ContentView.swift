@@ -19,6 +19,11 @@ struct ContentView: View {
         GridItem(.flexible(minimum: 120))
     ]
     
+    func addPet() {
+        let pet = Pet(name: "Best Friend")
+        modelContext.insert(pet)
+    }
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
