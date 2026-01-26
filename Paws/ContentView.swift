@@ -6,19 +6,28 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    
+    // MARK: - PROPERTIES
+    @Environment(\.modelContext) private var modelContext
+    @Query private var pets: [Pet]
+    
+    // MARK: - BODY
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            ScrollView {
+                EmptyView()
+            }
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(
+            for: Pet.self,
+            inMemory: true
+        )
 }
