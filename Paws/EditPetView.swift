@@ -24,6 +24,21 @@ struct EditPetView: View {
           .textFieldStyle(.roundedBorder)
           .font(.largeTitle.weight(.light))
           .padding(.vertical)
+            
+            Button {
+                
+            } label: {
+                Text("SAVE")
+                    .font(.title3.weight(.medium))
+                    .padding(8)
+                    .frame(
+                        minWidth: 0,
+                        maxWidth: .infinity
+                    )
+            }
+            .buttonStyle(.borderedProminent)
+            .listRowSeparator(.hidden)
+            .padding(.bottom)
         }
         .listStyle(.plain)
         .navigationTitle("Edit \(pet.name)")
