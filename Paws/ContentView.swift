@@ -17,21 +17,22 @@ struct ContentView: View {
         GridItem(.flexible(minimum: 120)),
         GridItem(.flexible(minimum: 120))
     ]
-    
+    @State private var path = [Pet]()
     
     func addPet() {
         let pet = Pet(name: "Best Friend")
         modelContext.insert(pet)
+        path = [pet]
     }
     
     // MARK: - BODY
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ScrollView {
                 LazyVGrid(columns: layout) {
                     GridRow {
                         ForEach(pets) { pet in
-                            NavigationLink(destination: EmptyView()) {
+                            NavigationLink(value: pet) {
                                 VStack {
                                     
                                     if let imageData = pet.photo {
@@ -74,6 +75,10 @@ struct ContentView: View {
             }
             .navigationTitle(
                 pets.isEmpty ? "" : "Pets"
+            )
+            .navigationDestination(
+                for: Pet.self,
+                destination: EditPetView.init
             )
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
