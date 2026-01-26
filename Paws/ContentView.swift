@@ -28,11 +28,27 @@ struct ContentView: View {
                             NavigationLink(destination: EmptyView()) {
                                 VStack {
                                     Spacer()
+                                    
                                     Text(pet.name)
                                         .font(.title.weight(.light))
                                         .padding(.vertical)
+                                    
+                                    Spacer()
                                 }
+                                .frame(
+                                    minWidth: 0,
+                                    maxWidth: .infinity,
+                                    minHeight: 0,
+                                    maxHeight: .infinity
+                                )
+                                .clipShape(
+                                    RoundedRectangle(
+                                        cornerRadius: 8,
+                                        style: .circular
+                                    )
+                                )
                             }
+                            .foregroundStyle(.primary)
                         }
                     }
                 }
