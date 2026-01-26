@@ -22,6 +22,7 @@ struct ContentView: View {
     ]
     
     func addPet() {
+        isEditing = false
         let pet = Pet(name: "Best Friend")
         modelContext.insert(pet)
         path = [pet]
@@ -78,7 +79,15 @@ struct ContentView: View {
                                 .overlay(alignment: .topTrailing) {
                                     if !isEditing {
                                         Menu {
-                                            
+                                            Button(
+                                                systemImage: "trash",
+                                                role: .destructive
+                                            ) {
+                                                withAnimation {
+                                                    modelContext.delete(pet)
+                                                    try? modelContext.save()
+                                                }
+                                            }
                                         } label: {
                                             Image(systemName: "trash.circle.fill")
                                                 .resizable()
