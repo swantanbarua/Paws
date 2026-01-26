@@ -8,11 +8,13 @@
 // MARK: - IMPORTS
 import SwiftUI
 import SwiftData
+import PhotosUI
 
 struct EditPetView: View {
     
     // MARK: - PROPERTIES
     @Bindable var pet: Pet
+    @State private var photosPickerItem: PhotosPickerItem?
     
     // MARK: - BODY
     var body: some View {
@@ -29,13 +31,28 @@ struct EditPetView: View {
                 )
                 .padding(.top)
             }
-          TextField(
-            "Name",
-            text: $pet.name
-          )
-          .textFieldStyle(.roundedBorder)
-          .font(.largeTitle.weight(.light))
-          .padding(.vertical)
+            
+            PhotosPicker(
+                selection: $photosPickerItem,
+                matching: .images
+            ) {
+              Label(
+                "Select a photo",
+                systemImage: "photo.badge.plus"
+              )
+              .frame(
+                minWidth: 0,
+                maxWidth: .infinity
+              )
+            }
+            
+            TextField(
+                "Name",
+                text: $pet.name
+            )
+            .textFieldStyle(.roundedBorder)
+            .font(.largeTitle.weight(.light))
+            .padding(.vertical)
             
             Button {
                 
