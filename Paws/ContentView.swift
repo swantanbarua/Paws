@@ -38,6 +38,14 @@ struct ContentView: View {
                                     if let imageData = pet.photo {
                                         if let image = UIImage(data: imageData) {
                                             Image(uiImage: image)
+                                                .resizable()
+                                                .scaledToFit()
+                                                .clipShape(
+                                                    RoundedRectangle(
+                                                        cornerRadius: 8,
+                                                        style: .circular
+                                                    )
+                                                )
                                         }
                                     } else {
                                         Image(systemName: "pawprint.circle")
