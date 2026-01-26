@@ -17,7 +17,13 @@ struct EditPetView: View {
     // MARK: - BODY
     var body: some View {
         Form {
-            
+          TextField(
+            "Name",
+            text: $pet.name
+          )
+          .textFieldStyle(.roundedBorder)
+          .font(.largeTitle.weight(.light))
+          .padding(.vertical)
         }
         .listStyle(.plain)
         .navigationTitle("Edit \(pet.name)")
