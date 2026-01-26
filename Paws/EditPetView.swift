@@ -21,19 +21,21 @@ struct EditPetView: View {
 }
 
 #Preview {
-    NavigationStack {
-        do {
-            let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
-            let container = ModelContainer(
-                for: Pet.self,
-                configuration: configuration
-            )
-            let sampleData = Pet(name: "Daisy")
-            
-            return EditPetView()
+    
+    let configuration = ModelConfiguration(isStoredInMemoryOnly: true)
+    
+    let container = try? ModelContainer(
+        for: Pet.self,
+        configurations: configuration
+    )
+    
+    if let container {
+        let sampleData = Pet(name: "Daisy")
+        NavigationStack {
+            EditPetView(pet: sampleData)
                 .modelContainer(container)
-        } catch {
-            fatalError("Could not load preview data \(error.localizedDescription)")
         }
+    } else {
+        Text("Preview failed to create ModelContainer")
     }
 }
