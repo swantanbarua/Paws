@@ -18,6 +18,12 @@ struct ContentView: View {
         GridItem(.flexible(minimum: 120))
     ]
     
+    
+    func addPet() {
+        let pet = Pet(name: "Best Friend")
+        modelContext.insert(pet)
+    }
+    
     // MARK: - BODY
     var body: some View {
         NavigationStack {
@@ -69,6 +75,15 @@ struct ContentView: View {
             .navigationTitle(
                 pets.isEmpty ? "" : "Pets"
             )
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                      addPet()
+                    } label: {
+                        Image(systemName: "plus.circle")
+                    }
+                }
+            }
             .overlay {
                 if pets.isEmpty {
                     CustomContentUnavailableView(
