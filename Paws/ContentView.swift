@@ -27,6 +27,18 @@ struct ContentView: View {
                         ForEach(pets) { pet in
                             NavigationLink(destination: EmptyView()) {
                                 VStack {
+                                    
+                                    if let imageData = pet.photo {
+                                        if let image = UIImage(data: imageData) {
+                                            Image(uiImage: image)
+                                        }
+                                    } else {
+                                        Image(systemName: "pawprint.circle")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .foregroundStyle(.quaternary)
+                                    }
+                                    
                                     Spacer()
                                     
                                     Text(pet.name)
@@ -52,7 +64,11 @@ struct ContentView: View {
                         }
                     }
                 }
+                .padding(.horizontal)
             }
+            .navigationTitle(
+                pets.isEmpty ? "" : "Pets"
+            )
             .overlay {
                 if pets.isEmpty {
                     CustomContentUnavailableView(
