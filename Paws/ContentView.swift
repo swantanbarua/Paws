@@ -13,11 +13,13 @@ struct ContentView: View {
     // MARK: - PROPERTIES
     @Environment(\.modelContext) private var modelContext
     @Query private var pets: [Pet]
+    @State private var path = [Pet]()
+    @State private var isEditing = false
+    
     let layout = [
         GridItem(.flexible(minimum: 120)),
         GridItem(.flexible(minimum: 120))
     ]
-    @State private var path = [Pet]()
     
     func addPet() {
         let pet = Pet(name: "Best Friend")
@@ -34,7 +36,6 @@ struct ContentView: View {
                         ForEach(pets) { pet in
                             NavigationLink(value: pet) {
                                 VStack {
-                                    
                                     if let imageData = pet.photo {
                                         if let image = UIImage(data: imageData) {
                                             Image(uiImage: image)
@@ -74,6 +75,24 @@ struct ContentView: View {
                                         style: .circular
                                     )
                                 )
+                                .overlay(alignment: .topTrailing) {
+                                    if !isEditing {
+                                        Menu {
+                                            
+                                        } label: {
+                                            Image(systemName: "trash.circle.fill")
+                                                .resizable()
+                                                .scaledToFill()
+                                                .frame(
+                                                    width: 36,
+                                                    height: 36
+                                                )
+                                                .foregroundStyle(.red)
+                                                .symbolRenderingMode(.multicolor)
+                                                .padding()
+                                        }
+                                    }
+                                }
                             }
                             .foregroundStyle(.primary)
                         }
@@ -89,6 +108,16 @@ struct ContentView: View {
                 destination: EditPetView.init
             )
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        withAnimation {
+                            isEditing.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                    }
+                }
+                
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                       addPet()
