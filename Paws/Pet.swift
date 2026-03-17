@@ -5,10 +5,13 @@
 //  Created by Swantan Barua on 26/01/26.
 //
 
+// MARK: - IMPORTS
 import Foundation
 import SwiftData
 
-@Model final class Pet {
+// MARK: - MODEL
+@Model
+final class Pet {
     
     // MARK: - PROPERTIES
     var name: String
